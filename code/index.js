@@ -1,6 +1,6 @@
 // runSinglyLinkedList();
 // runDoublyLinkedList();
-runStackWithArray();
+// runStackWithArray();
 // runStackWithLinkedList();
 // runQueueWithLinkedList();
 // runQueueWithArray();
