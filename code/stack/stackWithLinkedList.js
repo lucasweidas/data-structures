@@ -2,22 +2,35 @@ import { LinkedList } from '../linked-list/singlyLinkedList.js';
 
 export class Stack {
   #list;
+  #maxSize;
+
   constructor() {
     this.#list = new LinkedList();
+    this.#maxSize = 5;
+    this.size = 0;
   }
 
   push(item) {
+    if (this.isFull()) {
+      throw new Error('Stack overflow');
+    }
     this.#list.pushFront(item);
+    this.size++;
   }
 
   pop() {
     if (this.#list.empty()) return null;
     const item = this.#list.popFront();
+    this.size--;
     return item.data;
   }
 
-  peek() {
+  top() {
     return this.#list.topFront().data;
+  }
+
+  isFull() {
+    return this.size === this.#maxSize;
   }
 
   isEmpty() {
