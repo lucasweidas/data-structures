@@ -3,7 +3,7 @@ export class Stack {
   #maxSize;
   constructor() {
     this.#stack = [];
-    this.#maxSize = 10000;
+    this.#maxSize = 5;
     this.size = 0;
   }
 
@@ -21,7 +21,7 @@ export class Stack {
     return item;
   }
 
-  peek() {
+  top() {
     return this.#stack[this.size - 1];
   }
 
