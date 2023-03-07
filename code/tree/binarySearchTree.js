@@ -13,7 +13,7 @@ class BinarySearchTree {
   }
 
   insert(value) {
-    if (this.#root === null) {
+    if (this.#isEmpty()) {
       this.#root = new TreeNode(value);
       return;
     }
@@ -37,7 +37,7 @@ class BinarySearchTree {
   }
 
   contains(value) {
-    if (this.#root === null) return false;
+    if (this.#isEmpty()) return false;
     return BinarySearchTree.#contains(value, this.#root);
   }
 
@@ -53,7 +53,55 @@ class BinarySearchTree {
       if (node.right === null) return false;
       return this.#contains(value, node.right);
     }
-    return false;
+  }
+
+  printInOrder() {
+    if (this.#isEmpty()) return;
+    BinarySearchTree.#printInOrder(this.#root);
+  }
+
+  static #printInOrder(node) {
+    if (node.left !== null) {
+      this.#printInOrder(node.left);
+    }
+    console.log(node.data);
+    if (node.right !== null) {
+      this.#printInOrder(node.right);
+    }
+  }
+
+  printPreOrder() {
+    if (this.#isEmpty()) return;
+    BinarySearchTree.#printPreOrder(this.#root);
+  }
+
+  static #printPreOrder(node) {
+    console.log(node.data);
+    if (node.left !== null) {
+      this.#printPreOrder(node.left);
+    }
+    if (node.right !== null) {
+      this.#printPreOrder(node.right);
+    }
+  }
+
+  printPostOrder() {
+    if (this.#isEmpty()) return;
+    BinarySearchTree.#printPostOrder(this.#root);
+  }
+
+  static #printPostOrder(node) {
+    if (node.left !== null) {
+      this.#printPostOrder(node.left);
+    }
+    if (node.right !== null) {
+      this.#printPostOrder(node.right);
+    }
+    console.log(node.data);
+  }
+
+  #isEmpty() {
+    return this.#root === null;
   }
 
   getRoot() {
@@ -64,7 +112,14 @@ class BinarySearchTree {
 const bst = new BinarySearchTree();
 bst.insert(10);
 bst.insert(10);
-bst.insert(8);
+bst.insert(7);
 bst.insert(11);
+bst.insert(8);
 console.log(bst.getRoot());
 console.log(bst.contains(8));
+console.log('printInOrder');
+bst.printInOrder();
+console.log('printPreOrder');
+bst.printPreOrder();
+console.log('printPostOrder');
+bst.printPostOrder();
