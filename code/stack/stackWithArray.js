@@ -33,7 +33,9 @@ export class Stack {
     return this.size === 0;
   }
 
-  [Symbol.iterator]() {
-    return this.#stack.values();
+  *[Symbol.iterator]() {
+    for (let i = this.size - 1; i >= 0; i--) {
+      yield this.#stack[i];
+    }
   }
 }

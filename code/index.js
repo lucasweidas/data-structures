@@ -1,9 +1,9 @@
 // runSinglyLinkedList();
 // runDoublyLinkedList();
-// runStackWithArray();
+runStackWithArray();
 // runStackWithLinkedList();
 // runQueueWithLinkedList();
-runQueueWithArray();
+// runQueueWithArray();
 
 async function runSinglyLinkedList() {
   const { LinkedList } = await import('./linked-list/singlyLinkedList.js');
@@ -64,7 +64,7 @@ async function runStackWithArray() {
   stack.push(50);
   console.log('Pop:', stack.pop());
   console.log('Pop:', stack.pop());
-  console.log('Peek:', stack.peek());
+  console.log('Top:', stack.top());
   console.log('Size:', stack.size);
   for (const item of stack) console.log(item);
 }
@@ -80,7 +80,8 @@ async function runStackWithLinkedList() {
   stack.push(50);
   console.log('Pop:', stack.pop());
   console.log('Pop:', stack.pop());
-  console.log('Peek:', stack.peek());
+  console.log('Top:', stack.top());
+  console.log('Size:', stack.size);
   for (const item of stack) console.log(item);
 }
 
