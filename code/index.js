@@ -115,3 +115,22 @@ async function runQueueWithArray() {
   queue.enqueue(60);
   for (const item of queue) console.log(item);
 }
+
+async function runBinarySearchTree() {
+  const { BinarySearchTree } = await import('./tree/binarySearchTree.js');
+  const bst = new BinarySearchTree();
+
+  bst.insert(10);
+  bst.insert(10);
+  bst.insert(7);
+  bst.insert(11);
+  bst.insert(8);
+  console.log(bst.getRoot());
+  console.log(bst.contains(8));
+  console.log('printPreOrder');
+  bst.printPreOrder();
+  console.log('printInOrder');
+  bst.printInOrder();
+  console.log('printPostOrder');
+  bst.printPostOrder();
+}

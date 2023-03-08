@@ -49,7 +49,7 @@ class TreeNode {
   }
 }
 
-class BinarySearchTree extends TreeNode {
+export class BinarySearchTree extends TreeNode {
   constructor() {
     super(null);
   }
@@ -93,18 +93,3 @@ class BinarySearchTree extends TreeNode {
     return this.data;
   }
 }
-
-const bst = new BinarySearchTree();
-bst.insert(10);
-bst.insert(10);
-bst.insert(7);
-bst.insert(11);
-bst.insert(8);
-console.log(bst.getRoot());
-console.log(bst.contains(8));
-console.log('printPreOrder');
-bst.printPreOrder();
-console.log('printInOrder');
-bst.printInOrder();
-console.log('printPostOrder');
-bst.printPostOrder();
