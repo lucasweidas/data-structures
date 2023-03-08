@@ -4,108 +4,93 @@ class TreeNode {
     this.left = null;
     this.right = null;
   }
-}
-
-class BinarySearchTree {
-  #root;
-  constructor() {
-    this.#root = null;
-  }
 
   insert(value) {
-    if (this.#isEmpty()) {
-      this.#root = new TreeNode(value);
-      return;
-    }
-    BinarySearchTree.#insert(value, this.#root);
-  }
-
-  static #insert(value, node) {
-    if (value <= node.data) {
-      if (node.left === null) {
-        node.left = new TreeNode(value);
+    if (value <= this.data) {
+      if (this.left === null) {
+        this.left = new TreeNode(value);
       } else {
-        this.#insert(value, node.left);
+        this.left.insert(value);
       }
     } else {
-      if (node.right === null) {
-        node.right = new TreeNode(value);
+      if (this.right === null) {
+        this.right = new TreeNode(value);
       } else {
-        this.#insert(value, node.right);
+        this.right.insert(value);
       }
     }
   }
 
   contains(value) {
-    if (this.#isEmpty()) return false;
-    return BinarySearchTree.#contains(value, this.#root);
-  }
-
-  static #contains(value, node) {
-    if (value === node.data) {
-      return true;
-    }
-    if (value <= node.data) {
-      if (node.left === null) return false;
-      return this.#contains(value, node.left);
-    }
-    if (value > node.data) {
-      if (node.right === null) return false;
-      return this.#contains(value, node.right);
-    }
-  }
-
-  printInOrder() {
-    if (this.#isEmpty()) return;
-    BinarySearchTree.#printInOrder(this.#root);
-  }
-
-  static #printInOrder(node) {
-    if (node.left !== null) {
-      this.#printInOrder(node.left);
-    }
-    console.log(node.data);
-    if (node.right !== null) {
-      this.#printInOrder(node.right);
+    if (value === this.data) return true;
+    if (value <= this.data) {
+      return this.left?.contains(value) ?? false;
+    } else {
+      return this.right?.contains(value) ?? false;
     }
   }
 
   printPreOrder() {
-    if (this.#isEmpty()) return;
-    BinarySearchTree.#printPreOrder(this.#root);
+    console.log(this.data);
+    this.left?.printPreOrder();
+    this.right?.printPreOrder();
   }
 
-  static #printPreOrder(node) {
-    console.log(node.data);
-    if (node.left !== null) {
-      this.#printPreOrder(node.left);
-    }
-    if (node.right !== null) {
-      this.#printPreOrder(node.right);
-    }
+  printInOrder() {
+    this.left?.printInOrder();
+    console.log(this.data);
+    this.right?.printInOrder();
   }
 
   printPostOrder() {
-    if (this.#isEmpty()) return;
-    BinarySearchTree.#printPostOrder(this.#root);
+    this.left?.printPostOrder();
+    this.right?.printPostOrder();
+    console.log(this.data);
+  }
+}
+
+class BinarySearchTree extends TreeNode {
+  constructor() {
+    super(null);
   }
 
-  static #printPostOrder(node) {
-    if (node.left !== null) {
-      this.#printPostOrder(node.left);
+  insert(value) {
+    if (value === undefined) {
+      throw new Error('undefined is not a valid value');
     }
-    if (node.right !== null) {
-      this.#printPostOrder(node.right);
+    if (this.isEmpty()) {
+      this.data = value;
+      return;
     }
-    console.log(node.data);
+    super.insert.call(this, value);
   }
 
-  #isEmpty() {
-    return this.#root === null;
+  contains(value) {
+    if (value === undefined || this.isEmpty()) return false;
+    return super.contains.call(this, value);
+  }
+
+  printPreOrder() {
+    if (this.isEmpty()) return;
+    super.printPreOrder.call(this);
+  }
+
+  printInOrder() {
+    if (this.isEmpty()) return;
+    super.printInOrder.call(this);
+  }
+
+  printPostOrder() {
+    if (this.isEmpty()) return;
+    super.printPostOrder.call(this);
+  }
+
+  isEmpty() {
+    return this.data === null;
   }
 
   getRoot() {
-    return this.#root;
+    return this.data;
   }
 }
 
@@ -117,9 +102,9 @@ bst.insert(11);
 bst.insert(8);
 console.log(bst.getRoot());
 console.log(bst.contains(8));
-console.log('printInOrder');
-bst.printInOrder();
 console.log('printPreOrder');
 bst.printPreOrder();
+console.log('printInOrder');
+bst.printInOrder();
 console.log('printPostOrder');
 bst.printPostOrder();
