@@ -5,7 +5,7 @@
 // runQueueWithLinkedList();
 // runQueueWithArray();
 // runBinarySearchTree();
-// runBinaryTree();
+runBinaryTree();
 
 async function runSinglyLinkedList() {
   const { LinkedList } = await import('./linked-list/singlyLinkedList.js');
@@ -160,4 +160,5 @@ async function runBinaryTree() {
   binaryTree.printInOrder();
   console.log('printPostOrder');
   binaryTree.printPostOrder();
+  console.log('FullTree:', binaryTree.isFullTree());
 }

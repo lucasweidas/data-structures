@@ -22,6 +22,16 @@ export class TreeNode {
     this.right?.printPostOrder();
     console.log(this.data);
   }
+
+  isFullTree() {
+    if (!this.left && !this.right) {
+      return true;
+    }
+    if (this.left && this.right) {
+      return this.left.isFullTree() && this.right.isFullTree();
+    }
+    return false;
+  }
 }
 
 export class BinaryTree {
@@ -58,6 +68,11 @@ export class BinaryTree {
   #print(callback) {
     if (this.isEmpty()) return;
     callback.call(this.#root);
+  }
+
+  isFullTree() {
+    if (this.isEmpty()) return true;
+    return TreeNode.prototype.isFullTree.call(this.#root);
   }
 
   isEmpty() {
