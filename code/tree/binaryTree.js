@@ -27,8 +27,20 @@ class TreeNode {
 export class BinaryTree {
   #root;
 
-  constructor(root) {
-    this.#root = root;
+  constructor() {
+    this.#root = null;
+  }
+
+  createNode(data) {
+    const newNode = new TreeNode(data);
+    return newNode;
+  }
+
+  setRoot(node) {
+    if (!(node instanceof TreeNode)) {
+      throw new TypeError('node must be an instance of TreeNode');
+    }
+    this.#root = node;
   }
 
   printPreOrder() {
@@ -53,20 +65,20 @@ export class BinaryTree {
   }
 }
 
-const first = new TreeNode(1);
-const second = new TreeNode(2);
-const third = new TreeNode(3);
-const fourth = new TreeNode(4);
-const fifth = new TreeNode(5);
-const sixth = new TreeNode(6);
+const binaryTree = new BinaryTree();
+const first = binaryTree.createNode(1);
+const second = binaryTree.createNode(2);
+const third = binaryTree.createNode(3);
+const fourth = binaryTree.createNode(4);
+const fifth = binaryTree.createNode(5);
+const sixth = binaryTree.createNode(6);
 
+binaryTree.setRoot(first);
 first.left = second;
 first.right = third;
 third.left = fourth;
 second.right = fifth;
 fifth.left = sixth;
-
-const binaryTree = new BinaryTree(first);
 
 console.log('printPreOrder');
 binaryTree.printPreOrder();
