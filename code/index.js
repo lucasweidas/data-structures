@@ -4,6 +4,8 @@
 // runStackWithLinkedList();
 // runQueueWithLinkedList();
 // runQueueWithArray();
+// runBinarySearchTree();
+// runBinaryTree();
 
 async function runSinglyLinkedList() {
   const { LinkedList } = await import('./linked-list/singlyLinkedList.js');
@@ -133,4 +135,29 @@ async function runBinarySearchTree() {
   bst.printInOrder();
   console.log('printPostOrder');
   bst.printPostOrder();
+}
+
+async function runBinaryTree() {
+  const { BinaryTree } = await import('./tree/binaryTree.js');
+  const binaryTree = new BinaryTree();
+  const first = binaryTree.createNode(1);
+  const second = binaryTree.createNode(2);
+  const third = binaryTree.createNode(3);
+  const fourth = binaryTree.createNode(4);
+  const fifth = binaryTree.createNode(5);
+  const sixth = binaryTree.createNode(6);
+
+  binaryTree.setRoot(first);
+  first.left = second;
+  first.right = third;
+  third.left = fourth;
+  second.right = fifth;
+  fifth.left = sixth;
+
+  console.log('printPreOrder');
+  binaryTree.printPreOrder();
+  console.log('printInOrder');
+  binaryTree.printInOrder();
+  console.log('printPostOrder');
+  binaryTree.printPostOrder();
 }

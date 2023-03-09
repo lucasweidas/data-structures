@@ -1,8 +1,8 @@
-class TreeNode {
+import { TreeNode as BinaryTreeNode } from './binaryTree.js';
+
+class TreeNode extends BinaryTreeNode {
   constructor(data) {
-    this.data = data;
-    this.left = null;
-    this.right = null;
+    super(data);
   }
 
   insert(value) {
@@ -28,24 +28,6 @@ class TreeNode {
     } else {
       return this.right?.contains(value) ?? false;
     }
-  }
-
-  printPreOrder() {
-    console.log(this.data);
-    this.left?.printPreOrder();
-    this.right?.printPreOrder();
-  }
-
-  printInOrder() {
-    this.left?.printInOrder();
-    console.log(this.data);
-    this.right?.printInOrder();
-  }
-
-  printPostOrder() {
-    this.left?.printPostOrder();
-    this.right?.printPostOrder();
-    console.log(this.data);
   }
 }
 
