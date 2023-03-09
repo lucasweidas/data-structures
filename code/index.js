@@ -146,13 +146,15 @@ async function runBinaryTree() {
   const fourth = binaryTree.createNode(4);
   const fifth = binaryTree.createNode(5);
   const sixth = binaryTree.createNode(6);
+  const seventh = binaryTree.createNode(7);
 
   binaryTree.setRoot(first);
   first.left = second;
   first.right = third;
-  third.left = fourth;
+  second.left = fourth;
   second.right = fifth;
-  fifth.left = sixth;
+  third.left = sixth;
+  third.right = seventh;
 
   console.log('printPreOrder');
   binaryTree.printPreOrder();
@@ -161,4 +163,5 @@ async function runBinaryTree() {
   console.log('printPostOrder');
   binaryTree.printPostOrder();
   console.log('FullTree:', binaryTree.isFullTree());
+  console.log('PerfectTree:', binaryTree.isPerfectTree());
 }

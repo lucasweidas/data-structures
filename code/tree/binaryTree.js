@@ -32,6 +32,16 @@ export class TreeNode {
     }
     return false;
   }
+
+  isPerfectTree(depth, level = 0) {
+    if (!this.left && !this.right) {
+      return depth === level + 1;
+    }
+    if (!this.left || !this.right) {
+      return false;
+    }
+    return (this.left?.isPerfectTree(depth, level + 1) ?? true) && (this.right?.isPerfectTree(depth, level + 1) ?? true);
+  }
 }
 
 export class BinaryTree {
@@ -73,6 +83,25 @@ export class BinaryTree {
   isFullTree() {
     if (this.isEmpty()) return true;
     return TreeNode.prototype.isFullTree.call(this.#root);
+  }
+
+  isPerfectTree() {
+    if (this.isEmpty()) return true;
+    const depth = this.getDepth();
+    return TreeNode.prototype.isPerfectTree.call(this.#root, depth);
+  }
+
+  getDepth(node) {
+    if (!(node instanceof TreeNode)) {
+      node = this.#root;
+    }
+
+    let depth = 0;
+    while (node !== null) {
+      node = node.left;
+      depth++;
+    }
+    return depth;
   }
 
   isEmpty() {
