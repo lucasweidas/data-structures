@@ -42,6 +42,12 @@ export class TreeNode {
     }
     return (this.left?.isPerfectTree(depth, level + 1) ?? true) && (this.right?.isPerfectTree(depth, level + 1) ?? true);
   }
+
+  countTotalEdges(count = 0) {
+    count = this.left?.countTotalEdges(count + 1) ?? count;
+    count = this.right?.countTotalEdges(count + 1) ?? count;
+    return count;
+  }
 }
 
 export class BinaryTree {
@@ -102,6 +108,11 @@ export class BinaryTree {
       depth++;
     }
     return depth;
+  }
+
+  getTotalEdges() {
+    if (this.isEmpty()) return 0;
+    return TreeNode.prototype.countTotalEdges.call(this.#root);
   }
 
   isEmpty() {

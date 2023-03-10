@@ -156,12 +156,13 @@ async function runBinaryTree() {
   third.left = sixth;
   third.right = seventh;
 
-  console.log('printPreOrder');
-  binaryTree.printPreOrder();
-  console.log('printInOrder');
-  binaryTree.printInOrder();
-  console.log('printPostOrder');
-  binaryTree.printPostOrder();
-  console.log('FullTree:', binaryTree.isFullTree());
-  console.log('PerfectTree:', binaryTree.isPerfectTree());
+  // console.log('printPreOrder');
+  // binaryTree.printPreOrder();
+  // console.log('printInOrder');
+  // binaryTree.printInOrder();
+  // console.log('printPostOrder');
+  // binaryTree.printPostOrder();
+  // console.log('FullTree:', binaryTree.isFullTree());
+  // console.log('PerfectTree:', binaryTree.isPerfectTree());
+  console.log(binaryTree.getTotalEdges());
 }
