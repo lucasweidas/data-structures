@@ -48,6 +48,11 @@ export class TreeNode {
     count = this.right?.countTotalEdges(count + 1) ?? count;
     return count;
   }
+
+  countNodeHeight(node, height = 0) {
+    if (node === null) return height - 1;
+    return Math.max(this.countNodeHeight(node.left, height + 1), this.countNodeHeight(node.right, height + 1));
+  }
 }
 
 export class BinaryTree {
@@ -113,6 +118,19 @@ export class BinaryTree {
   getTotalEdges() {
     if (this.isEmpty()) return 0;
     return TreeNode.prototype.countTotalEdges.call(this.#root);
+  }
+
+  getNodeHeight(node) {
+    if (node == null) return 0;
+    if (!(node instanceof TreeNode)) {
+      throw new TypeError('node must be an instance of TreeNode');
+    }
+    return TreeNode.prototype.countNodeHeight(node);
+  }
+
+  getTreeHeight() {
+    if (this.isEmpty()) return 0;
+    return TreeNode.prototype.countNodeHeight(this.#root);
   }
 
   isEmpty() {
