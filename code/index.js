@@ -165,6 +165,8 @@ async function runBinaryTree() {
   // console.log('FullTree:', binaryTree.isFullTree());
   // console.log('PerfectTree:', binaryTree.isPerfectTree());
   // console.log('TotalEdges:', binaryTree.getTotalEdges());
-  console.log('NodeHeight:', binaryTree.getNodeHeight(second));
-  console.log('TreeHeight:', binaryTree.getTreeHeight());
+  // console.log('NodeHeight:', binaryTree.getNodeHeight(second));
+  // console.log('TreeHeight:', binaryTree.getTreeHeight());
+  console.log('NodeDegree:', binaryTree.getNodeDegree(sixth));
+  console.log('TreeDegree:', binaryTree.getTreeDegree());
 }

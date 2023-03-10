@@ -53,6 +53,25 @@ export class TreeNode {
     if (node === null) return height - 1;
     return Math.max(this.countNodeHeight(node.left, height + 1), this.countNodeHeight(node.right, height + 1));
   }
+
+  countNodeDegree() {
+    return (this.left ? 1 : 0) + (this.right ? 1 : 0);
+  }
+
+  countTreeDegree() {
+    let parent = 0;
+    let left = 0;
+    let right = 0;
+    if (this.left) {
+      parent++;
+      left = this.left.countTreeDegree();
+    }
+    if (this.right) {
+      parent++;
+      right = this.right.countTreeDegree();
+    }
+    return Math.max(parent, left, right);
+  }
 }
 
 export class BinaryTree {
@@ -68,9 +87,7 @@ export class BinaryTree {
   }
 
   setRoot(node) {
-    if (!(node instanceof TreeNode)) {
-      throw new TypeError('node must be an instance of TreeNode');
-    }
+    this.checkNode(node);
     this.#root = node;
   }
 
@@ -122,15 +139,30 @@ export class BinaryTree {
 
   getNodeHeight(node) {
     if (node == null) return 0;
-    if (!(node instanceof TreeNode)) {
-      throw new TypeError('node must be an instance of TreeNode');
-    }
+    this.checkNode(node);
     return TreeNode.prototype.countNodeHeight(node);
   }
 
   getTreeHeight() {
     if (this.isEmpty()) return 0;
     return TreeNode.prototype.countNodeHeight(this.#root);
+  }
+
+  getNodeDegree(node) {
+    if (node == null) return 0;
+    this.checkNode(node);
+    return TreeNode.prototype.countNodeDegree.call(node);
+  }
+
+  getTreeDegree() {
+    if (this.isEmpty()) return 0;
+    return TreeNode.prototype.countTreeDegree.call(this.#root);
+  }
+
+  checkNode(node) {
+    if (!(node instanceof TreeNode)) {
+      throw new TypeError('node must be an instance of TreeNode');
+    }
   }
 
   isEmpty() {
