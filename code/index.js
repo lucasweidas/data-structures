@@ -160,8 +160,10 @@ async function runBinaryTree() {
   binaryTree.printPreOrder();
   console.log('traversePreOrder');
   binaryTree.traversePreOrder();
-  // console.log('printInOrder');
-  // binaryTree.printInOrder();
+  console.log('printInOrder');
+  binaryTree.printInOrder();
+  console.log('traverseInOrder');
+  binaryTree.traverseInOrder();
   // console.log('printPostOrder');
   // binaryTree.printPostOrder();
   // console.log('FullTree:', binaryTree.isFullTree());

@@ -85,6 +85,23 @@ export class TreeNode {
       if (current.left) stack.push(current.left);
     }
   }
+
+  traverseInOrder(node) {
+    const stack = new Stack();
+    let current = node;
+    while (true) {
+      if (current) {
+        stack.push(current);
+        current = current.left;
+      } else if (!stack.isEmpty()) {
+        const popped = stack.pop();
+        console.log(popped.data);
+        current = popped.right;
+      } else {
+        break;
+      }
+    }
+  }
 }
 
 export class BinaryTree {
@@ -182,11 +199,13 @@ export class BinaryTree {
     return this.#root === null;
   }
 
-  traversePreOrder(node) {
-    if (node == null) {
-      node = this.#root;
-    }
-    this.checkNode(node);
-    TreeNode.prototype.traversePreOrder(node);
+  traversePreOrder() {
+    if (this.isEmpty()) return;
+    TreeNode.prototype.traversePreOrder(this.#root);
+  }
+
+  traverseInOrder() {
+    if (this.isEmpty()) return;
+    TreeNode.prototype.traverseInOrder(this.#root);
   }
 }
