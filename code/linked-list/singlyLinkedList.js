@@ -35,10 +35,10 @@ export class LinkedList {
     this.length--;
     if (frontNode.next === null) {
       this.#head = null;
-      return null;
+    } else {
+      this.#head = frontNode.next;
     }
 
-    this.#head = frontNode.next;
     return frontNode;
   }
 
