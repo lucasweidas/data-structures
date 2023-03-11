@@ -1,3 +1,5 @@
+import { Stack } from '../stack/stackWithLinkedList.js';
+
 export class TreeNode {
   constructor(data) {
     this.data = data;
@@ -71,6 +73,17 @@ export class TreeNode {
       right = this.right.countTreeDegree();
     }
     return Math.max(parent, left, right);
+  }
+
+  traversePreOrder(node) {
+    const stack = new Stack();
+    stack.push(node);
+    while (!stack.isEmpty()) {
+      const current = stack.pop();
+      console.log(current.data);
+      if (current.right) stack.push(current.right);
+      if (current.left) stack.push(current.left);
+    }
   }
 }
 
@@ -167,5 +180,13 @@ export class BinaryTree {
 
   isEmpty() {
     return this.#root === null;
+  }
+
+  traversePreOrder(node) {
+    if (node == null) {
+      node = this.#root;
+    }
+    this.checkNode(node);
+    TreeNode.prototype.traversePreOrder(node);
   }
 }
