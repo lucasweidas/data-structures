@@ -6,7 +6,7 @@ export class Stack {
 
   constructor() {
     this.#list = new LinkedList();
-    this.#maxSize = 5;
+    this.#maxSize = 1000;
     this.size = 0;
   }
 

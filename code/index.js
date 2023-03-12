@@ -5,7 +5,7 @@
 // runQueueWithLinkedList();
 // runQueueWithArray();
 // runBinarySearchTree();
-// runBinaryTree();
+runBinaryTree();
 
 async function runSinglyLinkedList() {
   const { LinkedList } = await import('./linked-list/singlyLinkedList.js');
@@ -146,18 +146,33 @@ async function runBinaryTree() {
   const fourth = binaryTree.createNode(4);
   const fifth = binaryTree.createNode(5);
   const sixth = binaryTree.createNode(6);
+  const seventh = binaryTree.createNode(7);
 
   binaryTree.setRoot(first);
   first.left = second;
   first.right = third;
-  third.left = fourth;
+  second.left = fourth;
   second.right = fifth;
-  fifth.left = sixth;
+  third.left = sixth;
+  third.right = seventh;
 
-  console.log('printPreOrder');
-  binaryTree.printPreOrder();
-  console.log('printInOrder');
-  binaryTree.printInOrder();
+  // console.log('printPreOrder');
+  // binaryTree.printPreOrder();
+  // console.log('traversePreOrder');
+  // binaryTree.traversePreOrder();
+  // console.log('printInOrder');
+  // binaryTree.printInOrder();
+  // console.log('traverseInOrder');
+  // binaryTree.traverseInOrder();
   console.log('printPostOrder');
   binaryTree.printPostOrder();
+  console.log('traversePostOrder');
+  binaryTree.traversePostOrder();
+  // console.log('FullTree:', binaryTree.isFullTree());
+  // console.log('PerfectTree:', binaryTree.isPerfectTree());
+  // console.log('TotalEdges:', binaryTree.getTotalEdges());
+  // console.log('NodeHeight:', binaryTree.getNodeHeight(second));
+  // console.log('TreeHeight:', binaryTree.getTreeHeight());
+  // console.log('NodeDegree:', binaryTree.getNodeDegree(sixth));
+  // console.log('TreeDegree:', binaryTree.getTreeDegree());
 }
