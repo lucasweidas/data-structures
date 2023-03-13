@@ -1,3 +1,4 @@
+import { Queue } from '../queue/queueWithLinkedList.js';
 import { Stack } from '../stack/stackWithLinkedList.js';
 
 export class TreeNode {
@@ -45,6 +46,15 @@ export class TreeNode {
     return (this.left?.isPerfectTree(depth, level + 1) ?? true) && (this.right?.isPerfectTree(depth, level + 1) ?? true);
   }
 
+  isCompleteTree(index = 0, treeSize = this.countNodes()) {
+    if (index >= treeSize) return false;
+    return (this.left?.isCompleteTree(2 * index + 1, treeSize) ?? true) && (this.right?.isCompleteTree(2 * index + 2, treeSize) ?? true);
+  }
+
+  countNodes() {
+    return 1 + (this.left?.countNodes() ?? 0) + (this.right?.countNodes() ?? 0);
+  }
+
   countTotalEdges(count = 0) {
     count = this.left?.countTotalEdges(count + 1) ?? count;
     count = this.right?.countTotalEdges(count + 1) ?? count;
@@ -73,6 +83,16 @@ export class TreeNode {
       right = this.right.countTreeDegree();
     }
     return Math.max(parent, left, right);
+  }
+
+  countNodeDepth(node) {
+    let depth = -1;
+    if (this === node) return depth + 1;
+    depth = this.left?.countNodeDepth(node) ?? -1;
+    if (depth >= 0) return depth + 1;
+    depth = this.right?.countNodeDepth(node) ?? -1;
+    if (depth >= 0) return depth + 1;
+    return depth;
   }
 
   traversePreOrder(node) {
@@ -165,6 +185,11 @@ export class BinaryTree {
     return TreeNode.prototype.isPerfectTree.call(this.#root, depth);
   }
 
+  isCompleteTree() {
+    if (this.isEmpty()) return true;
+    return TreeNode.prototype.isCompleteTree.call(this.#root);
+  }
+
   #calculateDepth() {
     let current = this.#root;
     let depth = 0;
@@ -200,6 +225,12 @@ export class BinaryTree {
   getTreeDegree() {
     if (this.isEmpty()) return 0;
     return TreeNode.prototype.countTreeDegree.call(this.#root);
+  }
+
+  getNodeDepth(node) {
+    if (node == null) return 0;
+    this.checkNode(node);
+    return TreeNode.prototype.countNodeDepth.call(this.#root, node);
   }
 
   checkNode(node) {
