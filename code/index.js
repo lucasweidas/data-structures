@@ -169,10 +169,11 @@ async function runBinaryTree() {
   // console.log('traversePostOrder');
   // binaryTree.traversePostOrder();
   // console.log('FullTree:', binaryTree.isFullTree());
-  console.log('PerfectTree:', binaryTree.isPerfectTree());
+  // console.log('PerfectTree:', binaryTree.isPerfectTree());
   // console.log('TotalEdges:', binaryTree.getTotalEdges());
   // console.log('NodeHeight:', binaryTree.getNodeHeight(second));
   // console.log('TreeHeight:', binaryTree.getTreeHeight());
   // console.log('NodeDegree:', binaryTree.getNodeDegree(sixth));
   // console.log('TreeDegree:', binaryTree.getTreeDegree());
+  console.log('NodeDepth:', binaryTree.getNodeDepth(seventh));
 }

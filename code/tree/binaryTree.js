@@ -1,3 +1,4 @@
+import { Queue } from '../queue/queueWithLinkedList.js';
 import { Stack } from '../stack/stackWithLinkedList.js';
 
 export class TreeNode {
@@ -73,6 +74,16 @@ export class TreeNode {
       right = this.right.countTreeDegree();
     }
     return Math.max(parent, left, right);
+  }
+
+  countNodeDepth(node) {
+    let depth = -1;
+    if (this === node) return depth + 1;
+    depth = this.left?.countNodeDepth(node) ?? -1;
+    if (depth >= 0) return depth + 1;
+    depth = this.right?.countNodeDepth(node) ?? -1;
+    if (depth >= 0) return depth + 1;
+    return depth;
   }
 
   traversePreOrder(node) {
@@ -200,6 +211,12 @@ export class BinaryTree {
   getTreeDegree() {
     if (this.isEmpty()) return 0;
     return TreeNode.prototype.countTreeDegree.call(this.#root);
+  }
+
+  getNodeDepth(node) {
+    if (node == null) return 0;
+    this.checkNode(node);
+    return TreeNode.prototype.countNodeDepth.call(this.#root, node);
   }
 
   checkNode(node) {
