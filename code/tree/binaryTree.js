@@ -161,18 +161,15 @@ export class BinaryTree {
 
   isPerfectTree() {
     if (this.isEmpty()) return true;
-    const depth = this.getDepth();
+    const depth = this.#calculateDepth();
     return TreeNode.prototype.isPerfectTree.call(this.#root, depth);
   }
 
-  getDepth(node) {
-    if (!(node instanceof TreeNode)) {
-      node = this.#root;
-    }
-
+  #calculateDepth() {
+    let current = this.#root;
     let depth = 0;
-    while (node !== null) {
-      node = node.left;
+    while (current !== null) {
+      current = current.left;
       depth++;
     }
     return depth;
