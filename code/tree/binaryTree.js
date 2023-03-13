@@ -46,6 +46,15 @@ export class TreeNode {
     return (this.left?.isPerfectTree(depth, level + 1) ?? true) && (this.right?.isPerfectTree(depth, level + 1) ?? true);
   }
 
+  isCompleteTree(index = 0, treeSize = this.countNodes()) {
+    if (index >= treeSize) return false;
+    return (this.left?.isCompleteTree(2 * index + 1, treeSize) ?? true) && (this.right?.isCompleteTree(2 * index + 2, treeSize) ?? true);
+  }
+
+  countNodes() {
+    return 1 + (this.left?.countNodes() ?? 0) + (this.right?.countNodes() ?? 0);
+  }
+
   countTotalEdges(count = 0) {
     count = this.left?.countTotalEdges(count + 1) ?? count;
     count = this.right?.countTotalEdges(count + 1) ?? count;
@@ -174,6 +183,11 @@ export class BinaryTree {
     if (this.isEmpty()) return true;
     const depth = this.#calculateDepth();
     return TreeNode.prototype.isPerfectTree.call(this.#root, depth);
+  }
+
+  isCompleteTree() {
+    if (this.isEmpty()) return true;
+    return TreeNode.prototype.isCompleteTree.call(this.#root);
   }
 
   #calculateDepth() {
